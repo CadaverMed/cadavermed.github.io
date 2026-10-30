@@ -9,7 +9,7 @@
 .brand{font-size:25px;letter-spacing:2px;font-weight:700}.kicker{margin-top:12px;letter-spacing:1px;color:#718076;font-size:11px;text-transform:uppercase}
 h1{font-size:25px;margin:60px 0 8px}p{font-size:13px;color:#6f7670;margin:0 0 35px}.section{font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:16px}
 table{width:100%;border-collapse:collapse;font-size:14px}td{padding:13px 5px;border-bottom:1px solid #e1e5e0;vertical-align:top;white-space:pre-wrap;overflow-wrap:anywhere}td:first-child{width:40%;color:#667068}td:last-child{font-weight:600}
-.total{margin-top:35px;border-top:2px solid #718076;padding-top:24px;display:flex;justify-content:space-between;gap:15px;align-items:center;font-weight:bold}.price{font-size:24px}
+.option-list{margin:0;padding-left:18px}.option-list li{margin:0 0 7px;line-height:1.4}.option-list li:last-child{margin-bottom:0}.total{margin-top:35px;border-top:2px solid #718076;padding-top:24px;display:flex;justify-content:space-between;gap:15px;align-items:center;font-weight:bold}.price{font-size:24px}
 footer{margin-top:80px;color:#7d837e;font-size:11px;line-height:1.7}
 @page{size:A4;margin:0}@media print{body{padding:0;background:white}.toolbar{display:none}.page{box-shadow:none;max-width:none;width:210mm;min-height:297mm;padding:19mm 20mm}h1{margin-top:38px}footer{margin-top:60px}}
 .page.exporting{width:794px!important;max-width:794px!important;min-height:1080px!important;height:1080px!important;margin:0!important;padding:55px 60px!important;box-shadow:none!important}
@@ -31,7 +31,7 @@ const extras=(city==='Москва'?p.get('moscow_extras'):city==='Стамбу�
 const entries=[['Компания','company'],['Город','city'],['Участников','participants'],['Курсов','courses']];
 const extraEntries=[['Формат курсов',formats],['Размещение',hotel],['Дополнительные услуги',extras]];
 const tbody=document.querySelector('#rows');
-for(const [label,valueRaw] of [...entries.map(([label,key])=>[label,p.get(key)||'']),...extraEntries]){const value=(valueRaw||'').trim();if(!value)continue;const tr=document.createElement('tr');const t1=document.createElement('td');const t2=document.createElement('td');t1.textContent=label;t2.textContent=value;tr.append(t1,t2);tbody.append(tr)}
+for(const [label,valueRaw] of [...entries.map(([label,key])=>[label,p.get(key)||'']),...extraEntries]){const value=(valueRaw||'').trim();if(!value)continue;const tr=document.createElement('tr');const t1=document.createElement('td');const t2=document.createElement('td');t1.textContent=label;if(label==='Дополнительные услуги'){const list=document.createElement('ul');list.className='option-list';for(const item of value.split(/,\\s*|;\\s*|\\n+/).map(v=>v.trim()).filter(Boolean)){const li=document.createElement('li');li.textContent=item;list.append(li)}t2.append(list)}else{t2.textContent=value}tr.append(t1,t2);tbody.append(tr)}
 const raw=(p.get('total')||'').trim().replaceAll(' ','').replace(',','.');
 const amount=Number(raw);
 const good=/^\d+(\.\d+)?$/.test(raw)&&Number.isFinite(amount)&&amount>0&&['Москва','Стамбул','Тбилиси'].includes(p.get('city'));
