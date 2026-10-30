@@ -15,8 +15,8 @@ footer{margin-top:80px;color:#7d837e;font-size:11px;line-height:1.7}
 .page.exporting{width:794px!important;max-width:794px!important;min-height:1080px!important;height:1080px!important;margin:0!important;padding:55px 60px!important;box-shadow:none!important}
 </style><script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js" referrerpolicy="no-referrer"></script></head>
 <body>
-<div class="toolbar"><span class="notice" id="notice">Открыта страница расчёта CADAVER.MED.</span><div class="toolbar-actions"><a class="back-link" href="https://tally.so/r/gbbozJ">Рассчитать другой вариант</a><button id="pdf" disabled>Сохранить PDF</button></div></div>
-<main class="page"><div class="brand">CADAVER.MED</div><div class="kicker">Корпоративные образовательные программы</div>
+<div class="toolbar"><span class="notice" id="notice">Открыта страница расчёта CADAVER.MED.</span><div class="toolbar-actions"><a class="back-link" href="https://tally.so/r/gbbozJ" target="_blank" rel="noopener noreferrer">Новый расчёт ↗</a><button id="pdf" disabled>Сохранить PDF</button></div></div>
+<main class="page"><div class="only-screen" style="margin-bottom:22px;padding:13px 16px;background:#eff3ef;border-radius:5px;font-size:13px"><a href="https://tally.so/r/gbbozJ" target="_blank" rel="noopener noreferrer" style="color:#303532;font-weight:700">Новый расчёт — открыть в отдельной вкладке ↗</a><div style="color:#626b65;margin-top:6px">Этот расчёт останется здесь: его можно скачать позже.</div></div><div class="brand">CADAVER.MED</div><div class="kicker">Корпоративные образовательные программы</div>
 <h1>Расчёт программы</h1><p>Предварительная комплектация для согласования</p>
 <div class="section">Параметры программы</div><table><tbody id="rows"></tbody></table>
 <div class="total"><span>Итоговая стоимость</span><span class="price" id="total">—</span></div>
@@ -56,7 +56,7 @@ const raw=(p.get('total')||'').trim().replaceAll(' ','').replace(',','.');
 const amount=Number(raw);
 const good=/^\d+(\.\d+)?$/.test(raw)&&Number.isFinite(amount)&&amount>0&&['Москва','Стамбул','Тбилиси'].includes(p.get('city'));
 document.querySelector('#total').textContent=good?amount.toLocaleString('ru-RU',{maximumFractionDigits:0})+' ₽':'Нет расчёта';
-document.querySelector('#notice').textContent=good?'Проверьте комплектацию и сохраните одну страницу А4.':'Для формирования PDF нужен расчёт из конфигуратора Tally.';
+document.querySelector('#notice').textContent=good?'Сохраните PDF или откройте новый расчёт: этот результат останется в текущей вкладке.':'Для формирования PDF нужен расчёт из конфигуратора Tally.';
 document.querySelector('#pdf').disabled=!good;
 document.querySelector('#pdf').addEventListener('click',async()=>{
  const btn=document.querySelector('#pdf'), page=document.querySelector('.page'), note=document.querySelector('#notice');
@@ -69,7 +69,7 @@ document.querySelector('#pdf').addEventListener('click',async()=>{
       margin:0,
       filename:'CADAVER.MED_'+label+'_расчёт.pdf',
       image:{type:'jpeg',quality:0.98},
-      html2canvas:{scale:2,backgroundColor:'#ffffff',useCORS:true,scrollY:0},
+      html2canvas:{scale:2,ignoreElements:(element)=>element.classList?.contains('only-screen'),backgroundColor:'#ffffff',useCORS:true,scrollY:0},
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
       pagebreak:{mode:['css']}
    }).from(page).save();
