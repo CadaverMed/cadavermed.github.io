@@ -23,9 +23,14 @@ footer{margin-top:80px;color:#7d837e;font-size:11px;line-height:1.7}
 </main>
 <script>
 const p=new URLSearchParams(window.location.search);
-const entries=[['Компания','company'],['Город','city'],['Участников','participants'],['Курсов','courses'],['Формат курсов','formats'],['Размещение','hotel'],['Дополнительные услуги','extras']];
+const city=(p.get('city')||'').trim();
+const formats=[1,2,3,4].map(i=>(p.get('course'+i)||'').trim()).filter(Boolean).map((x,i)=>'Курс '+(i+1)+': '+x).join('; ');
+const hotel=(city==='Стамбул'?p.get('istanbul_hotel'):city==='Тбилиси'?p.get('tbilisi_hotel'):'')||'';
+const extras=(city==='Москва'?p.get('moscow_extras'):city==='Стамбул'?p.get('istanbul_extras'):city==='Тбилиси'?p.get('tbilisi_extras'):'')||'';
+const entries=[['Компания','company'],['Город','city'],['Участников','participants'],['Курсов','courses']];
+const extraEntries=[['Формат курсов',formats],['Размещение',hotel],['Дополнительные услуги',extras]];
 const tbody=document.querySelector('#rows');
-for(const [label,key] of entries){const value=(p.get(key)||'').trim();if(!value)continue;const tr=document.createElement('tr');const t1=document.createElement('td');const t2=document.createElement('td');t1.textContent=label;t2.textContent=value;tr.append(t1,t2);tbody.append(tr)}
+for(const [label,valueRaw] of [...entries.map(([label,key])=>[label,p.get(key)||'']),...extraEntries]){const value=(valueRaw||'').trim();if(!value)continue;const tr=document.createElement('tr');const t1=document.createElement('td');const t2=document.createElement('td');t1.textContent=label;t2.textContent=value;tr.append(t1,t2);tbody.append(tr)}
 const raw=(p.get('total')||'').trim().replaceAll(' ','').replace(',','.');
 const amount=Number(raw);
 const good=/^\d+(\.\d+)?$/.test(raw)&&Number.isFinite(amount)&&amount>0&&['Москва','Стамбул','Тбилиси'].includes(p.get('city'));
