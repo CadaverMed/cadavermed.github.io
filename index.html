@@ -29,6 +29,7 @@ const formats=[1,2,3,4].map(i=>(p.get('course'+i)||'').trim()).filter(Boolean).m
 const hotel=(city==='Стамбул'?p.get('istanbul_hotel'):city==='Тбилиси'?p.get('tbilisi_hotel'):'')||'';
 const extras=(city==='Москва'?p.get('moscow_extras'):city==='Стамбул'?p.get('istanbul_extras'):city==='Тбилиси'?p.get('tbilisi_extras'):'')||'';
 const entries=[['Компания','company'],['Город','city'],['Участников','participants'],['Курсов','courses']];
+const yachtHours=(p.get('yacht_hours')||'').trim();
 const extraEntries=[['Размещение',hotel],['Дополнительные услуги',extras]];
 const tbody=document.querySelector('#rows');
 const courseRows=[1,2,3,4].map(i=>[i,(p.get('course'+i)||'').trim()]).filter(x=>x[1]);
@@ -42,7 +43,7 @@ for(const [label,valueRaw] of [...entries.map(([label,key])=>[label,p.get(key)||
      tr.className='option-row';
      const t1=document.createElement('td'),t2=document.createElement('td');
      t1.textContent=index===0?label:'';
-     t2.textContent='• '+item;
+     t2.textContent='• '+(city==='Стамбул' && /^Яхта по Босфору$/i.test(item) && yachtHours ? item+' — '+yachtHours+' на каждый курс' : item);
      tr.append(t1,t2);tbody.append(tr);
    });
  } else {
