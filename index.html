@@ -29,8 +29,9 @@ const formats=[1,2,3,4].map(i=>(p.get('course'+i)||'').trim()).filter(Boolean).m
 const hotel=(city==='Стамбул'?p.get('istanbul_hotel'):city==='Тбилиси'?p.get('tbilisi_hotel'):'')||'';
 const extras=(city==='Москва'?p.get('moscow_extras'):city==='Стамбул'?p.get('istanbul_extras'):city==='Тбилиси'?p.get('tbilisi_extras'):'')||'';
 const entries=[['Компания','company'],['Город','city'],['Участников','participants'],['Курсов','courses']];
-const extraEntries=[['Формат курсов',formats],['Размещение',hotel],['Дополнительные услуги',extras]];
+const extraEntries=[['Размещение',hotel],['Дополнительные услуги',extras]];
 const tbody=document.querySelector('#rows');
+const courseRows=[1,2,3,4].map(i=>[i,(p.get('course'+i)||'').trim()]).filter(x=>x[1]);
 for(const [label,valueRaw] of [...entries.map(([label,key])=>[label,p.get(key)||'']),...extraEntries]){
  const value=(valueRaw||'').trim();
  if(!value)continue;
@@ -50,6 +51,7 @@ for(const [label,valueRaw] of [...entries.map(([label,key])=>[label,p.get(key)||
    t1.textContent=label;t2.textContent=value;tr.append(t1,t2);tbody.append(tr);
  }
 }
+if(courseRows.length){const rows=[...tbody.querySelectorAll('tr')];const anchor=rows.find(r=>r.firstElementChild?.textContent==='Курсов');for(const [i,format] of courseRows){const tr=document.createElement('tr'),label=document.createElement('td'),val=document.createElement('td');label.textContent='Курс '+i;val.textContent=format;tr.append(label,val);if(anchor&&anchor.nextSibling)tbody.insertBefore(tr,anchor.nextSibling);else tbody.append(tr)}}
 const raw=(p.get('total')||'').trim().replaceAll(' ','').replace(',','.');
 const amount=Number(raw);
 const good=/^\d+(\.\d+)?$/.test(raw)&&Number.isFinite(amount)&&amount>0&&['Москва','Стамбул','Тбилиси'].includes(p.get('city'));
