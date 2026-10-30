@@ -12,7 +12,8 @@ table{width:100%;border-collapse:collapse;font-size:14px}td{padding:13px 5px;bor
 .total{margin-top:35px;border-top:2px solid #718076;padding-top:24px;display:flex;justify-content:space-between;gap:15px;align-items:center;font-weight:bold}.price{font-size:24px}
 footer{margin-top:80px;color:#7d837e;font-size:11px;line-height:1.7}
 @page{size:A4;margin:0}@media print{body{padding:0;background:white}.toolbar{display:none}.page{box-shadow:none;max-width:none;width:210mm;min-height:297mm;padding:19mm 20mm}h1{margin-top:38px}footer{margin-top:60px}}
-</style></head>
+.page.exporting{width:794px!important;max-width:794px!important;min-height:1080px!important;height:1080px!important;margin:0!important;padding:55px 60px!important;box-shadow:none!important}
+</style><script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js" referrerpolicy="no-referrer"></script></head>
 <body>
 <div class="toolbar"><span class="notice" id="notice">Открыта страница расчёта CADAVER.MED.</span><button id="pdf" disabled>Сохранить PDF</button></div>
 <main class="page"><div class="brand">CADAVER.MED</div><div class="kicker">Корпоративные образовательные программы</div>
@@ -37,5 +38,23 @@ const good=/^\d+(\.\d+)?$/.test(raw)&&Number.isFinite(amount)&&amount>0&&['Мо�
 document.querySelector('#total').textContent=good?amount.toLocaleString('ru-RU',{maximumFractionDigits:0})+' ₽':'Нет расчёта';
 document.querySelector('#notice').textContent=good?'Проверьте комплектацию и сохраните одну страницу А4.':'Для формирования PDF нужен расчёт из конфигуратора Tally.';
 document.querySelector('#pdf').disabled=!good;
-document.querySelector('#pdf').addEventListener('click',()=>window.print());
+document.querySelector('#pdf').addEventListener('click',async()=>{
+ const btn=document.querySelector('#pdf'), page=document.querySelector('.page'), note=document.querySelector('#notice');
+ if(!good)return;
+ if(typeof html2pdf!=='function'){note.textContent='Не удалось загрузить модуль PDF. Обновите страницу и повторите.';return;}
+ btn.disabled=true;btn.textContent='Создаём PDF…';page.classList.add('exporting');
+ try{
+   const label=(city||'course').replace(/[^\\p{L}\\p{N}-]+/gu,'_');
+   await html2pdf().set({
+      margin:0,
+      filename:'CADAVER.MED_'+label+'_расчёт.pdf',
+      image:{type:'jpeg',quality:0.98},
+      html2canvas:{scale:2,backgroundColor:'#ffffff',useCORS:true,scrollY:0},
+      jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
+      pagebreak:{mode:['css']}
+   }).from(page).save();
+   note.textContent='PDF сформирован. Проверьте загрузки браузера.';
+ }catch(e){note.textContent='Ошибка создания PDF. Попробуйте ещё раз.';}
+ finally{page.classList.remove('exporting');btn.disabled=false;btn.textContent='Сохранить PDF';}
+});
 </script></body></html>
