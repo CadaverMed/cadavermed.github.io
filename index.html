@@ -37,7 +37,7 @@ for(const [label,valueRaw] of [...entries.map(([label,key])=>[label,p.get(key)||
  const value=(valueRaw||'').trim();
  if(!value)continue;
  if(label==='Дополнительные услуги'){
-   const items=value.split(/[,;\\n]+/).map(v=>v.trim()).filter(Boolean);
+   const items=value.split(/[,;\n]+/).map(v=>v.trim()).filter(Boolean);
    items.forEach((item,index)=>{
      const tr=document.createElement('tr');
      tr.className='option-row';
