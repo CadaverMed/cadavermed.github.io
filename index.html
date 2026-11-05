@@ -59,9 +59,16 @@ const good=/^\d+(\.\d+)?$/.test(raw)&&Number.isFinite(amount)&&amount>0&&['Мо�
 document.querySelector('#total').textContent=good?amount.toLocaleString('ru-RU',{maximumFractionDigits:0})+' ₽':'Нет расчёта';
 document.querySelector('#notice').textContent=good?'Сохраните PDF или откройте новый расчёт: этот результат останется в текущей вкладке.':'Для формирования PDF нужен расчёт из конфигуратора Tally.';
 document.querySelector('#pdf').disabled=!good;
+// Метки событий PDF (без сведений о компании и параметрах расчёта).
+function trackPdfEvent(name){
+  if(typeof window.gtag==='function') window.gtag('event',name,{event_category:'configurator'});
+  if(typeof window.plausible==='function') window.plausible(name);
+  if(Array.isArray(window.dataLayer)) window.dataLayer.push({event:name});
+}
 document.querySelector('#pdf').addEventListener('click',async()=>{
  const btn=document.querySelector('#pdf'), page=document.querySelector('.page'), note=document.querySelector('#notice');
  if(!good)return;
+ trackPdfEvent('pdf_save_clicked');
  if(typeof html2pdf!=='function'){note.textContent='Не удалось загрузить модуль PDF. Обновите страницу и повторите.';return;}
  btn.disabled=true;btn.textContent='Создаём PDF…';page.classList.add('exporting');
  try{
@@ -74,6 +81,7 @@ document.querySelector('#pdf').addEventListener('click',async()=>{
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
       pagebreak:{mode:['css']}
    }).from(page).save();
+   trackPdfEvent('pdf_generated');
    note.textContent='PDF сформирован. Проверьте загрузки браузера.';
  }catch(e){note.textContent='Ошибка создания PDF. Попробуйте ещё раз.';}
  finally{page.classList.remove('exporting');btn.disabled=false;btn.textContent='Сохранить PDF';}
