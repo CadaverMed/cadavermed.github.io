@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#082b1b">
+<meta name="description" content="Персональное приглашение CADAVER.MED на анатомический интенсив 23 ноября 2026 года, Москва.">
+<title>Ваше приглашение — CADAVER.MED · 23 ноября</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--pine:#082b1b;--forest:#103a25;--sage:#dce4d7;--white:#fff;--charcoal:#151a17;--soft:#e7eee7}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--pine);color:var(--white);font:400 16px/1.6 Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+a{color:inherit}
+.shell{width:min(100% - 48px,1040px);margin-inline:auto}
+.masthead{padding:24px 0;background:var(--pine)}
+.masthead .shell{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-size:17px;letter-spacing:.24em;font-weight:300;text-decoration:none;color:#fff}
+.header-code{font-size:12px;color:#fff;letter-spacing:.06em}
+.intro{background:var(--pine);min-height:600px;display:flex;align-items:center}
+.intro .shell{padding-block:105px 105px}
+.kicker{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin:0 0 28px}
+.intro h1{font-weight:300;font-size:clamp(47px,8.5vw,95px);line-height:1.08;letter-spacing:-.067em;max-width:870px;margin:0 0 34px;color:#fff}
+.intro h1 em{font-style:normal;color:#fff}
+.intro .lead{font-weight:400;font-size:clamp(17px,2vw,21px);line-height:1.65;max-width:610px;color:#fff}
+.facts{display:flex;flex-wrap:wrap;gap:15px 38px;margin-top:52px;font-size:14px;font-weight:500;letter-spacing:.09em;color:#fff}
+.panel{padding:88px 0}
+.paper{background:#fff;color:var(--charcoal)}
+.deep{background:var(--forest);color:#fff}
+.pine{background:var(--pine);color:#fff}
+.muted{background:var(--sage);color:var(--charcoal)}
+.cols{display:grid;grid-template-columns:1fr 2.1fr;gap:70px}
+.section-label{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin:4px 0 28px;color:inherit}
+h2{font-size:clamp(32px,4.6vw,54px);font-weight:300;letter-spacing:-.045em;line-height:1.2;margin:0 0 30px;color:inherit}
+h3{font-size:23px;line-height:1.3;letter-spacing:-.02em;font-weight:400;margin:12px 0 12px;color:inherit}
+.prose p{font-size:17px;line-height:1.85;margin:0 0 22px;color:inherit}
+.sign{margin-top:40px;font-size:14px;font-weight:500;line-height:1.8}
+.program{display:grid;grid-template-columns:1fr 1fr;column-gap:65px;row-gap:45px;margin-top:45px}
+.topic{margin:0;font-size:12px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:inherit}
+.program p{font-size:16px;line-height:1.75;margin:0;color:inherit}
+.schedule{display:grid;gap:19px;margin-top:36px}
+.slot{display:grid;grid-template-columns:126px 1fr;gap:16px;font-size:17px;line-height:1.55}
+.slot strong{font-weight:600;color:var(--pine)}
+.price{font-size:clamp(62px,10vw,112px);line-height:1.1;letter-spacing:-.07em;font-weight:300;margin:18px 0 25px;color:var(--pine)}
+.payment-note{font-size:19px;line-height:1.7;color:var(--charcoal)}
+.payment-note strong{font-weight:600}
+.action{display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:55px;padding:16px 30px;background:var(--pine);color:white;text-decoration:none;font-weight:500;font-size:15px;line-height:1.4;margin-top:28px}
+.action.light{background:white;color:var(--pine)}
+.finale{text-align:center;padding:95px 24px 110px}
+.finale h2{margin-inline:auto;max-width:710px}
+.finale p{font-size:17px;line-height:1.8;max-width:600px;margin:0 auto 15px;color:white}
+.footer{padding:26px 0;background:var(--pine);color:white;font-size:12px}
+.footer .shell{display:flex;justify-content:space-between;gap:15px}
+.footer a{text-decoration:none}
+.cover{position:fixed;inset:0;background:var(--pine);z-index:10;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto;transition:opacity .25s ease}
+.cover.dismissed{opacity:0;pointer-events:none}
+.invite{width:min(100%,600px);padding:clamp(24px,7vw,65px);background:var(--forest);color:#fff}
+.invite .brand{display:block;margin-bottom:56px}
+.invite h2{font-size:clamp(42px,6vw,64px);line-height:1.13;letter-spacing:-.06em;font-weight:300;color:#fff;margin:0 0 24px}
+.invite p{font-size:17px;line-height:1.75;color:#fff;margin:0 0 23px}
+.invite .code-label{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin:33px 0 7px}
+.invite .code{font-size:25px;font-weight:400;letter-spacing:.03em}
+.invite button{width:100%;font:500 16px Manrope,Arial,sans-serif;background:white;color:var(--pine);border:0;padding:19px 12px;cursor:pointer;margin-top:28px}
+.invite .date-note{font-size:12px;letter-spacing:.08em;margin-top:24px;margin-bottom:0}
+[hidden]{display:none!important}
+@media(max-width:690px){
+ .shell{width:min(100% - 42px,1040px)}
+ .masthead{padding:19px 0}
+ .brand{font-size:14px;letter-spacing:.16em}
+ .header-code{font-size:10px}
+ .intro{min-height:0}
+ .intro .shell{padding-block:76px 80px}
+ .intro h1{font-size:clamp(45px,11vw,66px);line-height:1.07}
+ .facts{gap:14px 22px;font-size:12px;margin-top:36px}
+ .panel{padding:63px 0}
+ .cols{display:block}
+ .section-label{margin-bottom:27px}
+ .program{grid-template-columns:1fr;gap:32px}
+ .slot{grid-template-columns:105px 1fr;font-size:15px;gap:10px}
+ .prose p,.program p{font-size:16px;line-height:1.8}
+ .footer .shell{display:block;line-height:2.1}
+ .invite{padding:30px 25px}
+ .invite .brand{margin-bottom:39px}
+ .invite p{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.cover{transition:none}}
+</style>
+</head>
+<body class="locked">
+<div class="cover" id="inviteCover" role="dialog" aria-modal="true" aria-label="Персональное приглашение">
+ <div class="invite">
+  <span class="brand">CADAVER.MED</span>
+  <p class="kicker">Подготовлено специально для вас</p>
+  <h2>Ваше личное приглашение.</h2>
+  <p>23 ноября в Москве мы будем рады видеть вас на анатомическом интенсиве «Анатомия. С нуля или заново».</p>
+  <p class="code-label">Номер приглашения</p>
+  <div class="code" id="inviteNumberCover">CM–261123–001</div>
+  <button id="openInvitation" type="button">Открыть приглашение</button>
+  <p class="date-note">МОСКВА · 23.11.2026</p>
+ </div>
+</div>
+<header class="masthead"><div class="shell"><a class="brand" href="#top">CADAVER.MED</a><span class="header-code">Приглашение <span id="inviteNumberHeader">CM–261123–001</span></span></div></header>
+<main id="top">
+ <section class="intro"><div class="shell">
+  <p class="kicker">Анатомический интенсив · Москва</p>
+  <h1>АНАТОМИЯ.<br><em>С НУЛЯ</em><br>ИЛИ ЗАНОВО.</h1>
+  <p class="lead">Однодневный практический интенсив для специалистов со средним медицинским образованием.</p>
+  <div class="facts"><span>23 НОЯБРЯ 2026</span><span>МОСКВА</span><span>09:30–18:30</span></div>
+ </div></section>
+ <section class="panel paper"><div class="shell cols">
+  <p class="section-label">Письмо для вас</p>
+  <div class="prose">
+   <h2>Рады вашему интересу к CADAVER.MED.</h2>
+   <p>Анатомия становится по-настоящему полезной, когда можно увидеть, как связаны слои, сосуды и структуры лица — и понять, почему это важно в работе медицинского специалиста.</p>
+   <p>Мы подготовили день, в котором теория продолжается работой с моделью черепа, анатомической демонстрацией и практикой на тренажёрах. Чтобы за знакомыми словами появились объём, логика и уверенность в понимании анатомии.</p>
+   <p>Будем рады познакомиться с вами на интенсиве.</p>
+   <div class="sign">С уважением,<br>команда CADAVER.MED</div>
+  </div>
+ </div></section>
+ <section class="panel deep"><div class="shell">
+  <p class="section-label">Программа</p>
+  <h2>От анатомического слоя<br>к практическому решению.</h2>
+  <div class="program">
+   <div><p class="topic">Теория</p><h3>Сосуды, нервы, слои</h3><p>Поверхностный и глубокий жир, связочный аппарат, SMAS, мышечные комплексы лица, уровни залегания сосудов и опасные зоны при работе иглой и канюлей.</p></div>
+   <div><p class="topic">Мастер-класс</p><h3>Анатомия в объёме</h3><p>Лепка связок, жировых компартментов и сосудов на модели черепа.</p></div>
+   <div><p class="topic">Демонстрация</p><h3>От модели — к биоматериалу</h3><p>Анатомическая демонстрация на биологическом кадаверном материале.</p></div>
+   <div><p class="topic">Практика</p><h3>Навыки и безопасность</h3><p>Отработка на симуляторе КОС СИМ. Экстренные состояния: реанимационные мероприятия, командное взаимодействие, практические навыки на тренажёрах.</p></div>
+  </div>
+ </div></section>
+ <section class="panel paper"><div class="shell cols">
+  <p class="section-label">Распорядок дня</p>
+  <div><h2>Один день. Несколько форматов обучения.</h2>
+   <div class="schedule">
+    <div class="slot"><strong>09:30</strong><span>Регистрация участников</span></div>
+    <div class="slot"><strong>13:00–14:00</strong><span>Анатомическая демонстрация</span></div>
+    <div class="slot"><strong>15:00–16:00</strong><span>Практика на симуляторе КОС СИМ</span></div>
+    <div class="slot"><strong>16:00–18:30</strong><span>Экстренные состояния и практический блок</span></div>
+    <div class="slot"><strong>18:30</strong><span>Подведение итогов</span></div>
+   </div>
+  </div>
+ </div></section>
+ <section class="panel muted"><div class="shell cols">
+  <p class="section-label">Условия участия</p>
+  <div><h2>Стоимость интенсива</h2><div class="price">65 000 ₽</div>
+   <p class="payment-note">Возможна оплата двумя частями:<br><strong>35 000 ₽ + 30 000 ₽</strong></p>
+   <a class="action" href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Уточнить участие в Instagram</a>
+  </div>
+ </div></section>
+ <section class="pine finale">
+  <p class="section-label">До встречи 23 ноября</p>
+  <h2>Будем рады видеть вас<br>на интенсиве.</h2>
+  <p>Чтобы записаться, просто напишите «ИНТЕНСИВ» в Direct CADAVER.MED. Остались вопросы? Готовы ответить в директ ❤️</p>
+  <a class="action light" href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Написать @cadaver.med</a>
+ </section>
+</main>
+<footer class="footer"><div class="shell"><span>© CADAVER.MED · Москва · 23.11.2026</span><a href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Instagram @cadaver.med</a></div></footer>
+<script>
+(function(){
+ const q=new URLSearchParams(location.search);
+ const raw=(q.get('invite')||'').trim().toUpperCase();
+ const code=/^CM-(?:261123-)?\d{3,5}$/.test(raw)?raw.replace(/^CM-(\d{3,5})$/,'CM-261123-$1'):'CM-261123-001';
+ const label=code.replace(/-/g,'–');
+ document.getElementById('inviteNumberCover').textContent=label;
+ document.getElementById('inviteNumberHeader').textContent=label;
+ const cover=document.getElementById('inviteCover');
+ const open=document.getElementById('openInvitation');
+ open.addEventListener('click',()=>{
+  cover.classList.add('dismissed');
+  document.body.classList.remove('locked');
+  open.blur();
+  setTimeout(()=>{cover.hidden=true},300);
+ });
+})();
+</script>
+</body>
+</html>
