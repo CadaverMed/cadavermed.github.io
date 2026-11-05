@@ -88,6 +88,58 @@ h3{font-size:23px;line-height:1.3;letter-spacing:-.02em;font-weight:400;margin:1
  .invite p{font-size:16px}
 }
 @media(prefers-reduced-motion:reduce){.cover{transition:none}}
+
+/* CADAVER.MED — editorial invitation: clear hierarchy, contrast, intentional whitespace. */
+:root{--pine:#112e20;--forest:#254532;--sage:#e4e9df;--charcoal:#151a17}
+body{font-weight:400}
+.masthead{padding:19px 0}
+.brand{font-weight:400;letter-spacing:.18em}
+.intro{background:#112e20;min-height:610px;position:relative;isolation:isolate}
+.intro:after{content:"";position:absolute;z-index:-1;inset:0 0 0 auto;width:36%;background:#294733;opacity:.45}
+.intro .shell{padding-block:84px 96px}
+.intro h1{font-weight:300;letter-spacing:-.065em;line-height:1.09;max-width:880px}
+.intro h1 em{color:#d2e0d0}
+.intro .lead{font-size:19px;max-width:650px;font-weight:400}
+.kicker{letter-spacing:.14em}
+.facts{margin-top:30px;gap:12px 28px}
+.hero-action{display:flex;align-items:center;flex-wrap:wrap;gap:16px 29px;margin-top:37px}
+.hero-action .action{margin:0;min-width:215px}
+.hero-action span{font-size:14px;color:#fff;font-weight:500}
+.action{transition:background .2s,transform .2s}
+.action:hover{transform:translateY(-1px)}
+.value-strip{background:#e4e9df;color:#15231b;padding:42px 0}
+.value-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.value-grid>div{padding-right:6px}
+.value-grid span{display:none}
+.value-grid strong{display:block;font-size:19px;line-height:1.3;font-weight:600;margin-bottom:11px}
+.value-grid p{font-size:14px;line-height:1.65;margin:0;color:#263c2d}
+.paper{background:#fff;color:#151a17}
+.deep{background:#254532;color:#fff}
+.panel{padding-block:80px}
+.prose p{font-size:17px;line-height:1.75;color:#242d26}
+.program{gap:43px 58px}
+.program p{color:#fff}
+.muted{background:#e4e9df;color:#151a17}
+.price{color:#112e20}
+.invite{background:#254532}
+.cover{background:#112e20}
+.invite h2{font-weight:300}
+.invite button{color:#112e20}
+@media(max-width:690px){
+ .intro{min-height:0}
+ .intro:after{width:20%;opacity:.3}
+ .intro .shell{padding-block:66px 72px}
+ .intro h1{font-size:clamp(42px,10vw,62px);letter-spacing:-.055em}
+ .intro .lead{font-size:16px;line-height:1.75}
+ .hero-action{margin-top:28px;display:block}
+ .hero-action .action{width:100%}
+ .hero-action span{display:block;margin-top:15px;font-size:13px}
+ .value-strip{padding:36px 0}
+ .value-grid{grid-template-columns:1fr;gap:24px}
+ .value-grid strong{font-size:18px;margin-bottom:4px}
+ .value-grid p{font-size:14px}
+ .panel{padding-block:57px}
+}
 </style>
 </head>
 <body class="locked">
@@ -96,7 +148,7 @@ h3{font-size:23px;line-height:1.3;letter-spacing:-.02em;font-weight:400;margin:1
   <span class="brand">CADAVER.MED</span>
   <p class="kicker">Подготовлено специально для вас</p>
   <h2>Ваше личное приглашение.</h2>
-  <p>23 ноября в Москве мы будем рады видеть вас на анатомическом интенсиве «Анатомия. С нуля или заново».</p>
+  <p>Приглашаем на практический интенсив «Анатомия. С нуля или заново». Один день, в котором анатомия перестаёт быть плоской схемой.</p>
   <p class="code-label">Номер приглашения</p>
   <div class="code" id="inviteNumberCover">CM–261123–001</div>
   <button id="openInvitation" type="button">Открыть приглашение</button>
@@ -107,14 +159,20 @@ h3{font-size:23px;line-height:1.3;letter-spacing:-.02em;font-weight:400;margin:1
 <main id="top">
  <section class="intro"><div class="shell">
   <p class="kicker">Анатомический интенсив · Москва</p>
-  <h1>АНАТОМИЯ.<br><em>С НУЛЯ</em><br>ИЛИ ЗАНОВО.</h1>
-  <p class="lead">Однодневный практический интенсив для специалистов со средним медицинским образованием.</p>
+  <h1>Анатомия, которую<br><em>нужно увидеть.</em></h1>
+  <p class="lead">«Анатомия. С нуля или заново» — практический интенсив для специалистов со средним медицинским образованием. От слоёв и сосудов лица — к анатомической демонстрации и отработке навыков.</p>
   <div class="facts"><span>23 НОЯБРЯ 2026</span><span>МОСКВА</span><span>09:30–18:30</span></div>
+  <div class="hero-action"><a class="action light" href="#participation">Хочу на интенсив</a><span>65 000 ₽ · оплата 35 000 ₽ + 30 000 ₽</span></div>
+ </div></section>
+ <section class="value-strip" aria-label="Что вас ждёт"><div class="shell value-grid">
+  <div><span>01</span><strong>Увидеть слои</strong><p>Не только на схеме: объёмная анатомия лица и сосудистые ориентиры.</p></div>
+  <div><span>02</span><strong>Понять связи</strong><p>Связки, жировые компартменты и мышцы — в единой пространственной системе.</p></div>
+  <div><span>03</span><strong>Закрепить навыки</strong><p>Практика на моделях и тренажёрах, разбор экстренных ситуаций.</p></div>
  </div></section>
  <section class="panel paper"><div class="shell cols">
-  <p class="section-label">Письмо для вас</p>
+  <p class="section-label">Личное приглашение</p>
   <div class="prose">
-   <h2>Рады вашему интересу к CADAVER.MED.</h2>
+   <h2>Знать анатомию — не то же самое, что видеть её.</h2>
    <p>Анатомия становится по-настоящему полезной, когда можно увидеть, как связаны слои, сосуды и структуры лица — и понять, почему это важно в работе медицинского специалиста.</p>
    <p>Мы подготовили день, в котором теория продолжается работой с моделью черепа, анатомической демонстрацией и практикой на тренажёрах. Чтобы за знакомыми словами появились объём, логика и уверенность в понимании анатомии.</p>
    <p>Будем рады познакомиться с вами на интенсиве.</p>
@@ -143,9 +201,9 @@ h3{font-size:23px;line-height:1.3;letter-spacing:-.02em;font-weight:400;margin:1
    </div>
   </div>
  </div></section>
- <section class="panel muted"><div class="shell cols">
+ <section class="panel muted" id="participation"><div class="shell cols">
   <p class="section-label">Условия участия</p>
-  <div><h2>Стоимость интенсива</h2><div class="price">65 000 ₽</div>
+  <div><h2>Ваше участие</h2><div class="price">65 000 ₽</div>
    <p class="payment-note">Возможна оплата двумя частями:<br><strong>35 000 ₽ + 30 000 ₽</strong></p>
    <a class="action" href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Уточнить участие в Instagram</a>
   </div>
