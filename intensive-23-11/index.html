@@ -65,6 +65,33 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
 </main><footer class="wrap foot"><span>© CADAVER.MED · Москва · 23.11.2026</span><a href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Instagram @cadaver.med</a></footer>
 <script>
 (function(){
+  // GoatCounter: only three aggregate metrics; no invitation codes, URL queries or personal data.
+  // Insert the account subdomain supplied by GoatCounter after account creation.
+  var analyticsAccount='';
+  var eventsPending=[];
+  var analyticsReady=false;
+  function trackInvitation(path,title,isEvent){
+    var item={path:path,title:title,event:isEvent,referrer:''};
+    if(analyticsReady && window.goatcounter && typeof window.goatcounter.count==='function'){
+      window.goatcounter.count(item);
+    }else if(analyticsAccount){
+      eventsPending.push(item);
+    }
+  }
+  if(analyticsAccount){
+    window.goatcounter={no_onload:true,no_events:true,endpoint:'https://'+analyticsAccount+'.goatcounter.com/count'};
+    var tracker=document.createElement('script');
+    tracker.src='https://gc.zgo.at/count.js';
+    tracker.async=true;
+    tracker.onload=function(){
+      if(!window.goatcounter || typeof window.goatcounter.count!=='function') return;
+      analyticsReady=true;
+      for(var i=0;i<eventsPending.length;i++) window.goatcounter.count(eventsPending[i]);
+      eventsPending=[];
+    };
+    document.head.appendChild(tracker);
+    trackInvitation('/intensive-23-11/','Приглашение: посещение страницы',false);
+  }
   var params=new URLSearchParams(window.location.search);
   var raw=(params.get('invite')||'').trim().toUpperCase();
   // Number is an invitation label, not a reservation, identity, or payment confirmation.
@@ -95,10 +122,17 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
   document.getElementById('inviteNumberHeader').textContent=formatted;
   var trigger=document.getElementById('openInvitation');
   trigger.addEventListener('click',function(){
+    trackInvitation('invitation-open','Приглашение: открыть карточку',true);
     document.getElementById('inviteCover').classList.add('is-open');
     document.body.classList.remove('invite-locked');
     trigger.blur();
     window.setTimeout(function(){document.getElementById('inviteCover').hidden=true;},650);
   });
+  var instagramLinks=document.querySelectorAll('a[href="https://www.instagram.com/cadaver.med/"]');
+  for(var j=0;j<instagramLinks.length;j++){
+    instagramLinks[j].addEventListener('click',function(){
+      trackInvitation('instagram-click','Приглашение: переход в Instagram',true);
+    });
+  }
 })();
 </script></body></html>
