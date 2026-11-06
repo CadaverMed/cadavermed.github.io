@@ -67,8 +67,29 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
 (function(){
   var params=new URLSearchParams(window.location.search);
   var raw=(params.get('invite')||'').trim().toUpperCase();
-  // Invitation code is a display label only, never a reservation or authorization token.
-  var code=/^CM-(?:261123-)?\d{3,5}$/.test(raw)?raw.replace(/^CM-(\d{3,5})$/,'CM-261123-$1'):'CM-261123-001';
+  // Number is an invitation label, not a reservation, identity, or payment confirmation.
+  // Shared generic URL assigns a random number locally on first visit, preserving it
+  // on the same browser without cookies, CRM, registration, or a server-side database.
+  var key='cadavermed_invitation_261123';
+  var explicit=/^CM-(?:261123-)?\\d{3,8}$/.test(raw);
+  var code='';
+  if(explicit){
+    code=raw.replace(/^CM-(\\d{3,8})$/,'CM-261123-$1');
+  } else {
+    try {code=localStorage.getItem(key)||'';} catch(e){}
+    if(!/^CM-261123-\\d{8}$/.test(code)){
+      var value;
+      if(window.crypto && typeof window.crypto.getRandomValues==='function'){
+        var numbers=new Uint32Array(1);
+        window.crypto.getRandomValues(numbers);
+        value=10000000+(numbers[0]%90000000);
+      }else{
+        value=10000000+Math.floor(Math.random()*90000000);
+      }
+      code='CM-261123-'+value;
+      try {localStorage.setItem(key,code);} catch(e){}
+    }
+  }
   var formatted=code.replace(/-/g,'–');
   document.getElementById('inviteNumberCover').textContent=formatted;
   document.getElementById('inviteNumberHeader').textContent=formatted;
