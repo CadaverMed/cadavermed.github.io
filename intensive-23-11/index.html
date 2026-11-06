@@ -71,13 +71,13 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
   // Shared generic URL assigns a random number locally on first visit, preserving it
   // on the same browser without cookies, CRM, registration, or a server-side database.
   var key='cadavermed_invitation_261123';
-  var explicit=/^CM-(?:261123-)?\\d{3,8}$/.test(raw);
+  var explicit=/^CM-(?:261123-)?\d{3,8}$/.test(raw);
   var code='';
   if(explicit){
-    code=raw.replace(/^CM-(\\d{3,8})$/,'CM-261123-$1');
+    code=raw.replace(/^CM-(\d{3,8})$/,'CM-261123-$1');
   } else {
     try {code=localStorage.getItem(key)||'';} catch(e){}
-    if(!/^CM-261123-\\d{8}$/.test(code)){
+    if(!/^CM-261123-\d{8}$/.test(code)){
       var value;
       if(window.crypto && typeof window.crypto.getRandomValues==='function'){
         var numbers=new Uint32Array(1);
