@@ -36,14 +36,14 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
 .program{gap:18px 48px}
 .invite-open{font-family:inherit;font-weight:500}
 @media(max-width:650px){.tile{padding:12px 0}}
-</style></head><body class="invite-locked">
+.invite-name-label{display:block;color:#bdd2c1;font-size:13px;margin-top:24px;margin-bottom:9px}.invite-name-input{width:100%;padding:15px 14px;border:1px solid #718779;background:#f4f6f3;color:#202724;font:inherit;font-size:16px;border-radius:0}.invite-name-input:focus{outline:2px solid #b5cbb9;outline-offset:2px}.application{padding:72px 0;background:#e5ece6}.application h2{font-size:clamp(30px,4vw,50px);font-weight:300;letter-spacing:-.035em}.application p{font-size:17px;line-height:1.6;color:#45564b}.application .cta{border:0;cursor:pointer;font-family:inherit}.application-note{font-size:13px!important}</style></head><body class="invite-locked">
 <div id="inviteCover" class="invite-cover" role="dialog" aria-modal="true" aria-label="Персональное приглашение">
   <div class="invite-card">
     <div class="invite-brand">CADAVER.MED</div>
     <div class="invite-small">Подготовлено специально для вас</div>
     <h2>Ваше личное<br>приглашение.</h2>
     <p>23 ноября в Москве мы будем рады видеть вас на анатомическом интенсиве «Анатомия. С нуля или заново».</p>
-    <div class="invite-code-label">Номер приглашения</div>
+    <label class="invite-name-label" for="inviteName">Как могу к вам обращаться?</label><input class="invite-name-input" id="inviteName" type="text" maxlength="80" autocomplete="given-name" placeholder="Ваше имя"><div class="invite-code-label">Номер приглашения</div>
     <div class="invite-code" id="inviteNumberCover">CM–261123–001</div>
     <button type="button" class="invite-open" id="openInvitation">Открыть приглашение ↗</button>
     <div class="invite-meta"><span>МОСКВА · 23.11.2026</span><span>PRIVATE INVITATION</span></div>
@@ -52,7 +52,7 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
 <header class="top"><div class="wrap topin"><a class="wordmark" href="#top">CADAVER.MED</a><div class="topnote">Приглашение <span class="invite-inline-code" id="inviteNumberHeader">CM–261123–001</span></div></div></header>
 <main id="top">
 <section class="hero"><div class="wrap"><div class="eyebrow">Анатомический интенсив · Москва</div><h1>АНАТОМИЯ.<br><span>С НУЛЯ</span><br>ИЛИ ЗАНОВО.</h1><p>Однодневный практический интенсив для специалистов со средним медицинским образованием.</p><div class="meta"><div>23 НОЯБРЯ 2026</div><div>МОСКВА</div><div>09:30–18:30</div></div></div></section>
-<section class="section letter"><div class="wrap two"><div class="overline">Письмо для вас</div><div><h2>Рады вашему интересу к CADAVER.MED.</h2><p>Анатомия становится по-настоящему полезной, когда можно увидеть, как связаны слои, сосуды и структуры лица — и понять, почему это важно в работе медицинского специалиста.</p><p>Мы подготовили день, в котором теория продолжается работой с моделью черепа, анатомической демонстрацией и практикой на тренажёрах. Чтобы за знакомыми словами появились объём, логика и уверенность в понимании анатомии.</p><p>Будем рады познакомиться с вами на интенсиве.</p><div class="signature">С уважением,<br>команда CADAVER.MED</div></div></div></section>
+<section class="section letter"><div class="wrap two"><div class="overline">Письмо для вас</div><div><h2 id="personalGreeting">Рады вашему интересу к CADAVER.MED.</h2><p>Анатомия становится по-настоящему полезной, когда можно увидеть, как связаны слои, сосуды и структуры лица — и понять, почему это важно в работе медицинского специалиста.</p><p>Мы подготовили день, в котором теория продолжается работой с моделью черепа, анатомической демонстрацией и практикой на тренажёрах. Чтобы за знакомыми словами появились объём, логика и уверенность в понимании анатомии.</p><p>Будем рады познакомиться с вами на интенсиве.</p><div class="signature">С уважением,<br>команда CADAVER.MED</div></div></div></section>
 <section class="section"><div class="wrap"><div class="overline">Программа</div><h2>От анатомического слоя<br>к практическому решению.</h2><div class="program">
 <div class="tile"><span>ТЕОРИЯ</span><h3>Сосуды, нервы, слои</h3><p>Поверхностный и глубокий жир, связочный аппарат, SMAS, мышечные комплексы лица, уровни залегания сосудов и опасные зоны при работе иглой и канюлей.</p></div>
 <div class="tile"><span>МАСТЕР-КЛАСС</span><h3>Анатомия в объёме</h3><p>Лепка связок, жировых компартментов и сосудов на модели черепа.</p></div>
@@ -61,7 +61,7 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
 </div></div></section>
 <section class="section"><div class="wrap two"><div class="overline">Распорядок дня</div><div><h2>Один день. Несколько форматов обучения.</h2><div class="timeline"><div class="time"><strong>09:30</strong><span>Регистрация участников</span></div><div class="time"><strong>13:00–14:00</strong><span>Анатомическая демонстрация</span></div><div class="time"><strong>15:00–16:00</strong><span>Практика на симуляторе КОС СИМ</span></div><div class="time"><strong>16:00–18:30</strong><span>Экстренные состояния и практический блок</span></div><div class="time"><strong>18:30</strong><span>Подведение итогов</span></div></div></div></div></section>
 <section class="payment"><div class="wrap two"><div class="overline">Условия участия</div><div><h2>Стоимость интенсива</h2><div class="price">65 000 ₽</div><p class="subprice">Возможна оплата двумя частями:<br><strong>35 000 ₽ + 30 000 ₽</strong></p><a class="cta" href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Уточнить участие в Instagram ↗</a></div></div></section>
-<section class="end"><div class="overline" style="color:#b9c9bd">До встречи 23 ноября</div><h2>Будем рады видеть вас<br>на интенсиве.</h2><p>Чтобы записаться, просто напишите «ИНТЕНСИВ» в Direct CADAVER.MED. Остались вопросы? Готовы ответить в директ ❤️</p><a class="cta" href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Написать @cadaver.med ↗</a></section>
+<section class="application" id="application"><div class="wrap two"><div class="overline">Заявка на участие</div><div><h2>Хотите оформить заявку на курс?</h2><p>Оставьте номер телефона, и мы свяжемся с вами для оформления участия. Имя повторно вводить не потребуется.</p><button class="cta" type="button" id="applyInvitation">Оставить номер телефона ↗</button><p class="application-note">Форма откроется отдельно. Номер приглашения и имя будут переданы автоматически.</p></div></div></section><section class="end"><div class="overline" style="color:#b9c9bd">До встречи 23 ноября</div><h2>Будем рады видеть вас<br>на интенсиве.</h2><p>Чтобы записаться, просто напишите «ИНТЕНСИВ» в Direct CADAVER.MED. Остались вопросы? Готовы ответить в директ ❤️</p><a class="cta" href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Написать @cadaver.med ↗</a></section>
 </main><footer class="wrap foot"><span>© CADAVER.MED · Москва · 23.11.2026</span><a href="https://www.instagram.com/cadaver.med/" target="_blank" rel="noopener noreferrer">Instagram @cadaver.med</a></footer>
 <script>
 (function(){
@@ -120,13 +120,28 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
   var formatted=code.replace(/-/g,'–');
   document.getElementById('inviteNumberCover').textContent=formatted;
   document.getElementById('inviteNumberHeader').textContent=formatted;
+  var nameInput=document.getElementById('inviteName');
+  var nameKey='cadavermed_invitation_name_261123';
+  try{nameInput.value=localStorage.getItem(nameKey)||'';}catch(e){}
+  var visitorName='';
+  function getVisitorName(){return nameInput.value.trim().replace(/\s+/g,' ').slice(0,80);}
+  function saveVisitorName(){visitorName=getVisitorName();try{localStorage.setItem(nameKey,visitorName);}catch(e){}return visitorName;}
   var trigger=document.getElementById('openInvitation');
   trigger.addEventListener('click',function(){
+    var name=saveVisitorName();
+    if(name){document.getElementById('personalGreeting').textContent=name+', рады вашему интересу к CADAVER.MED.';}
     trackInvitation('invitation-open','Приглашение: открыть карточку',true);
     document.getElementById('inviteCover').classList.add('is-open');
     document.body.classList.remove('invite-locked');
     trigger.blur();
     window.setTimeout(function(){document.getElementById('inviteCover').hidden=true;},650);
+  });
+  document.getElementById('applyInvitation').addEventListener('click',function(){
+    var name=visitorName||saveVisitorName();
+    var url=new URL('https://tally.so/r/ped7E8');
+    url.searchParams.set('invite_name',name);
+    url.searchParams.set('invite_code',code);
+    window.open(url.toString(),'_blank','noopener,noreferrer');
   });
   var instagramLinks=document.querySelectorAll('a[href="https://www.instagram.com/cadaver.med/"]');
   for(var j=0;j<instagramLinks.length;j++){
