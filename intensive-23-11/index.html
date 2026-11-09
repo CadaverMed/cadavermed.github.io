@@ -63,7 +63,7 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
     <div class="invite-small">Подготовлено специально для вас</div>
     <h2>Ваше личное<br>приглашение.</h2>
     <p>23 ноября в Москве мы будем рады видеть вас на анатомическом интенсиве «Анатомия. С нуля или заново».</p>
-    <label class="invite-name-label" for="inviteName">Как могу к вам обращаться?</label><input class="invite-name-input" id="inviteName" type="text" maxlength="80" autocomplete="given-name" placeholder="Ваше имя"><div class="invite-code-label">Номер приглашения</div>
+    <label class="invite-name-label" for="inviteName">Как могу к вам обращаться?</label><input class="invite-name-input" id="inviteName" type="text" maxlength="80" autocomplete="off" placeholder="Ваше имя"><div class="invite-code-label">Номер приглашения</div>
     <div class="invite-code" id="inviteNumberCover">CM–261123–001</div>
     <button type="button" class="invite-open" id="openInvitation">Открыть приглашение ↗</button>
     <div class="invite-meta"><span>МОСКВА · 23.11.2026</span><span>PRIVATE INVITATION</span></div>
@@ -142,11 +142,12 @@ body{font-family:'Manrope',Arial,sans-serif;font-weight:400}
   document.getElementById('inviteNumberCover').textContent=formatted;
   document.getElementById('inviteNumberHeader').textContent=formatted;
   var nameInput=document.getElementById('inviteName');
-  var nameKey='cadavermed_invitation_name_261123';
-  try{nameInput.value=localStorage.getItem(nameKey)||'';}catch(e){}
+  // Every invitation opens with a blank name field, including returning visitors.
+  try{localStorage.removeItem('cadavermed_invitation_name_261123');}catch(e){}
+  nameInput.value='';
   var visitorName='';
   function getVisitorName(){return nameInput.value.trim().replace(/\s+/g,' ').slice(0,80);}
-  function saveVisitorName(){visitorName=getVisitorName();try{localStorage.setItem(nameKey,visitorName);}catch(e){}return visitorName;}
+  function saveVisitorName(){visitorName=getVisitorName();return visitorName;}
   var trigger=document.getElementById('openInvitation');
   trigger.addEventListener('click',function(){
     var name=saveVisitorName();
